@@ -3,6 +3,15 @@ Password phrases are _the_ way the to stay safe online. Who better to say the ph
 
 With yeezy you can generate password phrases with a Kanye West-based markov chain!
 
+```
+$ yeezy 10
+cremate move downtown cop a sweet space livin life like
+$ yeezy 9
+grab a red bull and sip slow sip slow
+$ yeezy 8
+bad as shit but you need to stop
+```
+
 
 ## Why pass phrases?
 Your password is most likely 8 characters, where the two middle ones are numbers.
