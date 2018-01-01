@@ -38,19 +38,26 @@ def markov_chain(transition_table, length, w0, w1, w2):
         w0, w1, w2 = w1, w2, random.choice(transition_table[w1, w2])
 
 
+def read_kanye_file():
+    this_dir, this_file = os.path.split(__file__)
+    with open(os.path.join(this_dir, 'kanye_verses.txt')) as f:
+        return f.read().split()
+
+
+def yeezy(words, length):
+    clean_words = list(map(clean_word, words))
+    transition_table = create_transition_table(clean_words)
+    i = random.randint(0, len(clean_words)-3)
+    return ' '.join(markov_chain(transition_table, length, *clean_words[i:i+3]))
+
+
 def main():
     try:
         strength = int(sys.argv[1])
     except (IndexError, ValueError):
         print('Usage: yeezy LENGTH')
         sys.exit(1)
-    this_dir, this_file = os.path.split(__file__)
-    with open(os.path.join(this_dir, 'kanye_verses.txt')) as f:
-        words = list(map(clean_word, f.read().split()))
-
-    transition_table = create_transition_table(words)
-    i = random.randint(0, len(words)-3)
-    print(' '.join(markov_chain(transition_table, strength, *words[i:i+3])))
+    print(yeezy(read_kanye_file(), strength))
 
 
 if __name__ == '__main__':
